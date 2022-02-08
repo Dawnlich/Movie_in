@@ -20,7 +20,7 @@ public class MoviesTimes extends Activity {
         setContentView(R.layout.movie_times_layout);
 
         date_view = (TextView) findViewById(R.id.date_view);
-        movie = (TextView) findViewById(R.id.textView6);
+        movie = (TextView) findViewById(R.id.movie);
 
         year = (int) getIntent().getSerializableExtra("year");
         day = (int) getIntent().getSerializableExtra("day");
@@ -32,7 +32,7 @@ public class MoviesTimes extends Activity {
         db = new DatabaseMovies(this);
 
         String info = "";
-        info += "Name: "  + " || Length: ";
+        info += "Name: "  + " || Length: " + " || Rating: ";
         info += "\n";
         movie.setText(info);
 
