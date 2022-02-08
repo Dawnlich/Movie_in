@@ -17,6 +17,7 @@ public class MainMenu extends Activity {
         Button ticket = findViewById(R.id.button4);
         Button logout = findViewById(R.id.button6);
 
+        //when the user clicks on the account button
         account.setOnClickListener(v -> {
             Intent intent = new Intent(MainMenu.this, MainActivity.class);
             startActivity(intent);
