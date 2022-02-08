@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Movie_in</string>
+    <string name="sign_up">Sign-up</string>
+    <string name="sign_in">Sign-in</string>
+    <string name="weclome_to_movie_in">Weclome to Movie-in!</string>
+    <string name="password">Password:</string>
+    <string name="email">Email:</string>
+    <string name="signUp">Sign-Up</string>
+    <string name="full_name">Full-name:</string>
+    <string name="email2">Email:</string>
+    <string name="please_enter_full_name">Please enter Full-name...</string>
+    <string name="please_enter_email">Please enter email....</string>
+    <string name="password_numbers_only">Password(Numbers only):</string>
+    <string name="please_enter_password">Please enter password...</string>
+    <string name="back2">Back</string>
+    <string name="enter_password">Enter password...</string>
+    <string name="enter_email">Enter email....</string>
+    <string name="passwordSignUp">Password</string>
+    <string name="enter_passwordSignUp">Enter password....</string>
+    <string name="welcome">Welcome</string>
+    <string name="repeat_password">Repeat password:</string>
+    <string name="enter_email2">Enter email...</string>
+    <string name="repeat_password3">Repeat password..</string>
+    <string name="logout">Logout</string>
+    <string name="purchase_a_ticket">Purchase a Ticket</string>
+    <string name="account">Account</string>
+    <string name="set_the_date">Set the Date</string>
+    <string name="confirm">Confirm</string>
+    <string name="back">Back</string>
+
+</resources>
