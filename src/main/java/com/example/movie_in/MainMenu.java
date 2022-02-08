@@ -23,11 +23,13 @@ public class MainMenu extends Activity {
             startActivity(intent);
         });
 
+        //when the user click on the ticket button
         ticket.setOnClickListener(v -> {
             Intent intent = new Intent(MainMenu.this, calendar.class);
             startActivity(intent);
         });
 
+        //when the user click on the logout button
         logout.setOnClickListener(v -> {
             Intent intent = new Intent(MainMenu.this, MainActivity.class);
             startActivity(intent);
