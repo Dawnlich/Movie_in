@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Database extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Database";
+    public static final String DATABASE_NAME = "MoviesDatabase";
 
     //variables for table one
     public static final String TABLE_NAME = "users_table";
@@ -41,10 +41,10 @@ public class Database extends SQLiteOpenHelper {
     public static final String query2 = "CREATE TABLE " + TABLE_NAME2 + " ("
             + ID + " integer primary key autoincrement, "
             + COL_3 + " text,"
-            + COL_4 + " text ,"
-            + COL_5 + " text ,"
-            + COL_6 + " text ,"
-            + COL_7 + " text ,"
+            + COL_4 + " double ,"
+            + COL_5 + " integer ,"
+            + COL_6 + " integer ,"
+            + COL_7 + " integer ,"
             + COL_8 + " text )";
 
     //creates the table in the database
@@ -75,6 +75,21 @@ public class Database extends SQLiteOpenHelper {
             return true;
     }
 
+    public boolean insertMovies(String name, double length, int Day, int Month, int Year, String rating) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1, name);
+        contentValues.put(COL_2, length);
+        contentValues.put(COL_3, Day);
+        contentValues.put(COL_4, Month);
+        contentValues.put(COL_5, Year);
+        contentValues.put(COL_6, rating);
+        long result = db.insert(TABLE_NAME, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
 
     //this function checks to see if the emails is already in use
     public Boolean checkEmail(String email) {

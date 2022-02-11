@@ -27,5 +27,12 @@
     <string name="set_the_date">Set the Date</string>
     <string name="confirm">Confirm</string>
     <string name="back">Back</string>
+    <string name="add_movie">Add Movie</string>
+    <string name="enter_movie_name">Enter movie name...</string>
+    <string name="rating">Rating...</string>
+    <string name="enter_length_of_movie">Enter length of Movie...</string>
+    <string name="enter_date">Enter date...</string>
+    <string name="enter">Enter</string>
+    <string name="exit">EXIT</string>
 
 </resources>
