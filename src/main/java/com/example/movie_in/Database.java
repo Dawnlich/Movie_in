@@ -75,21 +75,6 @@ public class Database extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertMovies(String name, float length, int Day, int Month, int Year, String rating) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, name);
-        contentValues.put(COL_2, length);
-        contentValues.put(COL_3, Day);
-        contentValues.put(COL_4, Month);
-        contentValues.put(COL_5, Year);
-        contentValues.put(COL_6, rating);
-        long result = db.insert(TABLE_NAME, null, contentValues);
-        if (result == -1)
-            return false;
-        else
-            return true;
-    }
 
     //this function checks to see if the emails is already in use
     public Boolean checkEmail(String email) {
