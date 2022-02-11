@@ -9,10 +9,12 @@ import android.widget.TextView;
 public class MoviesTimes extends Activity {
 
 
-    private DatabaseMovies db;
+    private Database db;
 
-    TextView date_view, movie;
     int year, day, month;
+    TextView date_view, movie;
+    String movieName, rating;
+    Double runTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +31,11 @@ public class MoviesTimes extends Activity {
         String datePick = day + "-" + (month + 1) + "-" + year;
         date_view.setText(datePick);
 
-        db = new DatabaseMovies(this);
+        db = new Database(this);
+
 
         String info = "";
-        info += "Name: "  + " || Length: " + " || Rating: ";
+        info += "Name: " + movieName  + " || Length: " + runTime +" hours || Rating: "  + rating;
         info += "\n";
         movie.setText(info);
 

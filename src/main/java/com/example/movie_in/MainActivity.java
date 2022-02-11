@@ -38,8 +38,8 @@ public class MainActivity extends Activity {
             }else{
                 Boolean checking = db.CheckLogin(edit1.getText().toString(), edit2.getText().toString());
                 if(checking == true) {
-                    Intent intent = new Intent(MainActivity.this, MainMenu.class);
-                    startActivity(intent);
+                        Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                        startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Invalid email or password!", Toast.LENGTH_SHORT).show();
                 }

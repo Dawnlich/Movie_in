@@ -9,34 +9,56 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Database extends SQLiteOpenHelper {
 
+    public static final String DATABASE_NAME = "Database";
 
-    //variables
-    public static final String DATABASE_NAME = "Accounts";
+    //variables for table one
     public static final String TABLE_NAME = "users_table";
     public static final String ID = "ID";
     public static final String COL_1 = "EMAIL";
     public static final String COL_2 = "PASSWORD";
+
+    //variables for table two
+    public static final String TABLE_NAME2 = "movies_table";
+    public static final String COL_3 = "MOVIES";
+    public static final String COL_4 = "LENGTH";
+    public static final String COL_5 = "DAY";
+    public static final String COL_6 = "MONTH";
+    public static final String COL_7 = "YEAR";
+    public static final String COL_8 = "RATING";
 
     //constructs that database
     public Database(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
 
-    //creates the table in the datbase
+    //first table
+    public static final String query = "CREATE TABLE " + TABLE_NAME + " ("
+            + ID + " integer primary key autoincrement, "
+            + COL_1 + " text,"
+            + COL_2 + " text)";
+
+    //second table for movies
+    public static final String query2 = "CREATE TABLE " + TABLE_NAME2 + " ("
+            + ID + " integer primary key autoincrement, "
+            + COL_3 + " text,"
+            + COL_4 + " text ,"
+            + COL_5 + " text ,"
+            + COL_6 + " text ,"
+            + COL_7 + " text ,"
+            + COL_8 + " text )";
+
+    //creates the table in the database
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE " + TABLE_NAME + " ("
-                + ID + " integer primary key autoincrement, "
-                + COL_1 + " text,"
-                + COL_2 + " text)";
-
         db.execSQL(query);
+        db.execSQL(query2);
     }
 
     //checks to see if there is already a table in the database
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
         onCreate(db);
     }
 
@@ -46,6 +68,22 @@ public class Database extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, email);
         contentValues.put(COL_2, password);
+        long result = db.insert(TABLE_NAME, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
+    public boolean insertMovies(String name, float length, int Day, int Month, int Year, String rating) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_1, name);
+        contentValues.put(COL_2, length);
+        contentValues.put(COL_3, Day);
+        contentValues.put(COL_4, Month);
+        contentValues.put(COL_5, Year);
+        contentValues.put(COL_6, rating);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
             return false;
