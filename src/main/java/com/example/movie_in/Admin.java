@@ -39,7 +39,7 @@ public class Admin extends Activity {
         });
 
         exit.setOnClickListener(v -> {
-            Intent intent = new Intent(Admin.this, SignUp.class);
+            Intent intent = new Intent(Admin.this, MainActivity.class);
             startActivity(intent);
         });
     }

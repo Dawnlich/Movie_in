@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class Database extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "MoviesDatabase";
+    public static final String DATABASE_NAME = "MovieInDatabase";
 
     //variables for table one
     public static final String TABLE_NAME = "users_table";
@@ -25,6 +25,7 @@ public class Database extends SQLiteOpenHelper {
     public static final String COL_6 = "MONTH";
     public static final String COL_7 = "YEAR";
     public static final String COL_8 = "RATING";
+    public static final String COL_9 = "Synopsis";
 
     //constructs that database
     public Database(Context context) {
@@ -45,7 +46,8 @@ public class Database extends SQLiteOpenHelper {
             + COL_5 + " integer ,"
             + COL_6 + " integer ,"
             + COL_7 + " integer ,"
-            + COL_8 + " text )";
+            + COL_8 + " text, "
+            + COL_9 + " text )";
 
     //creates the table in the database
     @Override
@@ -75,15 +77,16 @@ public class Database extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertMovies(String name, double length, int Day, int Month, int Year, String rating) {
+    public boolean insertMovies(String name, double length, int Day, int Month, int Year, String rating, String story) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_1, name);
-        contentValues.put(COL_2, length);
-        contentValues.put(COL_3, Day);
-        contentValues.put(COL_4, Month);
-        contentValues.put(COL_5, Year);
-        contentValues.put(COL_6, rating);
+        contentValues.put(COL_3, name);
+        contentValues.put(COL_4, length);
+        contentValues.put(COL_5, Day);
+        contentValues.put(COL_6, Month);
+        contentValues.put(COL_7, Year);
+        contentValues.put(COL_8, rating);
+        contentValues.put(COL_9, rating);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1)
             return false;
