@@ -20,14 +20,14 @@
         android:id="@+id/editTextTextPersonName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="44dp"
         android:ems="10"
         android:hint="@string/enter_movie_name"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
@@ -48,15 +48,15 @@
         android:id="@+id/editTextNumberDecimal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="261dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginEnd="15dp"
         android:ems="10"
-        android:hint="@string/enter_length_of_movie"
+        android:hint="Runtime(Decimal).."
         android:inputType="numberDecimal"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName2"
+        app:layout_constraintTop_toBottomOf="@+id/addr_edittext" />
 
     <Button
         android:id="@+id/button10"
@@ -108,7 +108,8 @@
     <EditText
         android:id="@+id/editTextNumber3"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="14dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:ems="10"
@@ -117,16 +118,16 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal"
         app:layout_constraintEnd_toStartOf="@+id/editTextNumber"
-        app:layout_constraintStart_toEndOf="@+id/editTextNumber2" />
+        app:layout_constraintStart_toEndOf="@+id/editTextNumber2"
+        app:layout_constraintTop_toBottomOf="@+id/addr_edittext" />
 
     <EditText
         android:id="@+id/addr_edittext"
         android:layout_width="0dp"
         android:layout_height="234dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="77dp"
+        android:layout_marginTop="34dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="79dp"
         android:gravity="top|left"
         android:hint="Please enter a synopsis.."
         android:inputType="textEmailAddress|textMultiLine"
@@ -134,9 +135,8 @@
         android:minLines="5"
         android:scrollbars="vertical"
         android:scrollHorizontally="false"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextNumber2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

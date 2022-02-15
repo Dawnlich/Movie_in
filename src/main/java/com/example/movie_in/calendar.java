@@ -53,7 +53,7 @@ public class calendar extends Activity {
         //when users click on confirm button
         confirm.setOnClickListener(v -> {
             if(pickYear > 0){
-                if(pickYear >= year) {
+                if(pickYear == year) {
                     if(pickMonth >= month){
                         if(pickDay >= day || pickMonth > month) {
                             Intent intent = new Intent(calendar.this, MoviesTimes.class);
@@ -68,7 +68,7 @@ public class calendar extends Activity {
                         Toast.makeText(calendar.this, "Please select either current month, or a future month!", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(calendar.this, "Please select either current year, or a future year!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(calendar.this, "Please select the current year!", Toast.LENGTH_SHORT).show();
                 }
             }else{
                 Toast.makeText(calendar.this, "Please select a date!", Toast.LENGTH_SHORT).show();

@@ -86,8 +86,8 @@ public class Database extends SQLiteOpenHelper {
         contentValues.put(COL_6, Month);
         contentValues.put(COL_7, Year);
         contentValues.put(COL_8, rating);
-        contentValues.put(COL_9, rating);
-        long result = db.insert(TABLE_NAME, null, contentValues);
+        contentValues.put(COL_9, story);
+        long result = db.insert(TABLE_NAME2, null, contentValues);
         if (result == -1)
             return false;
         else
