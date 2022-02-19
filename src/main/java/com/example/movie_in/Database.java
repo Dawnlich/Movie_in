@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 
 public class Database extends SQLiteOpenHelper {
 
@@ -102,7 +104,6 @@ public class Database extends SQLiteOpenHelper {
             return true;
         else
             return false;
-
     }
 
     //this function will check the email and password to make sure it is in the database
@@ -116,6 +117,18 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
+    //to print all the info about the movies
+    public String getMovie(int day, int month, int year) {
+        String rv = "No Movie!";
+        String queryMV = "SELECT " + COL_3 + " FROM " + TABLE_NAME2 +
+                " WHERE " + COL_5 + " = '" + day + "' AND "+ COL_6 + " = '" + month + "' AND "+ COL_7 + " = '" + year + "'";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndexOrThrow(COL_3));
+        }
+        return rv;
+    }
 
 }
 

@@ -13,7 +13,7 @@ public class MoviesTimes extends Activity {
 
     int year, day, month;
     TextView date_view, movie;
-    String movieName, rating;
+    String movieName, rating, story;
     Double runTime;
 
     @Override
@@ -33,9 +33,12 @@ public class MoviesTimes extends Activity {
 
         db = new Database(this);
 
+        movieName = db.getMovie(day, month, year);
+        //rating = db.getRating(day, month, year);
 
         String info = "";
         info += "Name: " + movieName  + " || Length: " + runTime +" hours || Rating: "  + rating;
+        info += "Story: " + story;
         info += "\n";
         movie.setText(info);
 

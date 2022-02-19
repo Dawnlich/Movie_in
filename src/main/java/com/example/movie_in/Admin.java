@@ -74,6 +74,8 @@ public class Admin extends Activity {
                                 Boolean added = db.insertMovies(movie, runTime, dayNum, monthNum, yearNum, rate, about);
                                 if(added){
                                     Toast.makeText(Admin.this, "This enter was added!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(Admin.this, MainActivity.class);
+                                    startActivity(intent);
                                 }else{
                                     Toast.makeText(Admin.this, "Error!", Toast.LENGTH_SHORT).show();
                                 }
