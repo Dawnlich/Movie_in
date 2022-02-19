@@ -34,10 +34,15 @@ public class MoviesTimes extends Activity {
         db = new Database(this);
 
         movieName = db.getMovie(day, month, year);
-        //rating = db.getRating(day, month, year);
+        rating = db.getRating(day, month, year);
+        runTime = db.getLength(day, month, year);
+        story = db.getStory(day, month, year);
 
         String info = "";
-        info += "Name: " + movieName  + " || Length: " + runTime +" hours || Rating: "  + rating;
+        info += "Name: " + movieName  + " || Rating: "  + rating;
+        info += "\n";
+        info += "Length of Movie: " + runTime + " hours";
+        info += "\n";
         info += "Story: " + story;
         info += "\n";
         movie.setText(info);
