@@ -40,22 +40,22 @@
         android:id="@+id/signUpButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="45dp"
         android:text="@string/signUp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/backButton1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
         android:id="@+id/backButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="37dp"
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/signUpButton" />
 
     <EditText
         android:id="@+id/editTextTextPassword"
@@ -73,7 +73,7 @@
         android:id="@+id/editTextTextEmailAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="44dp"
         android:ems="10"
         android:hint="@string/enter_email2"
         android:inputType="textEmailAddress"
@@ -96,11 +96,11 @@
         android:id="@+id/editTextTextPassword2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="262dp"
+        android:layout_marginBottom="84dp"
         android:ems="10"
         android:hint="@string/repeat_password3"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signUpButton"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -54,7 +54,6 @@ public class Admin extends Activity {
             String rate = rating.getText().toString();
             String movie = movieName.getText().toString();
             String about = story.getText().toString();
-            String parking =  "ABCDEFGHIJKLMNOPQRST";
 
 
             //conditions to meet when enter data
@@ -72,7 +71,7 @@ public class Admin extends Activity {
                     if(monthNum >= monthCur){
                         if(dayNum >= dayCur || monthNum > monthCur) {
                             if(rate.equals("G") || rate.equals("PG-13") || rate.equals("PG") || rate.equals("R") || rate.equals("M")){
-                                Boolean added = db.insertMovies(movie, runTime, dayNum, monthNum, yearNum, rate, about, parking);
+                                Boolean added = db.insertMovies(movie, runTime, dayNum, monthNum, yearNum, rate, about);
                                 if(added){
                                     Toast.makeText(Admin.this, "This enter was added!", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(Admin.this, MainActivity.class);

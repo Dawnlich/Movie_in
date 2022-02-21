@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Movie-InDatabase";
+    public static final String DATABASE_NAME = "MovieInDatabase";
 
     //variables for table one
     public static final String TABLE_NAME = "users_table";
@@ -28,7 +28,6 @@ public class Database extends SQLiteOpenHelper {
     public static final String COL_7 = "YEAR";
     public static final String COL_8 = "RATING";
     public static final String COL_9 = "Synopsis";
-    public static final String COL_10 = "Parking";
 
     //constructs that database
     public Database(Context context) {
@@ -50,8 +49,7 @@ public class Database extends SQLiteOpenHelper {
             + COL_6 + " integer ,"
             + COL_7 + " integer ,"
             + COL_8 + " text, "
-            + COL_9 + " text, "
-            + COL_10 + " text )";
+            + COL_9 + " text )";
 
     //creates the table in the database
     @Override
@@ -81,7 +79,7 @@ public class Database extends SQLiteOpenHelper {
             return true;
     }
 
-    public boolean insertMovies(String name, double length, int Day, int Month, int Year, String rating, String story, String parking) {
+    public boolean insertMovies(String name, double length, int Day, int Month, int Year, String rating, String story) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_3, name);
@@ -91,7 +89,6 @@ public class Database extends SQLiteOpenHelper {
         contentValues.put(COL_7, Year);
         contentValues.put(COL_8, rating);
         contentValues.put(COL_9, story);
-        contentValues.put(COL_10, parking);
         long result = db.insert(TABLE_NAME2, null, contentValues);
         if (result == -1)
             return false;
@@ -129,42 +126,6 @@ public class Database extends SQLiteOpenHelper {
         Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
         if (csr.moveToFirst()) {
             rv = csr.getString(csr.getColumnIndexOrThrow(COL_3));
-        }
-        return rv;
-    }
-
-    public String getRating(int day, int month, int year) {
-        String rv = "No Rating!";
-        String queryMV = "SELECT " + COL_8 + " FROM " + TABLE_NAME2 +
-                " WHERE " + COL_5 + " = '" + day + "' AND "+ COL_6 + " = '" + month + "' AND "+ COL_7 + " = '" + year + "'";
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
-        if (csr.moveToFirst()) {
-            rv = csr.getString(csr.getColumnIndexOrThrow(COL_8));
-        }
-        return rv;
-    }
-
-    public Double getLength(int day, int month, int year) {
-        Double rv = 0.0;
-        String queryMV = "SELECT " + COL_4 + " FROM " + TABLE_NAME2 +
-                " WHERE " + COL_5 + " = '" + day + "' AND "+ COL_6 + " = '" + month + "' AND "+ COL_7 + " = '" + year + "'";
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
-        if (csr.moveToFirst()) {
-            rv = csr.getDouble(csr.getColumnIndexOrThrow(COL_4));
-        }
-        return rv;
-    }
-
-    public String getStory(int day, int month, int year) {
-        String rv ="Unkown";
-        String queryMV = "SELECT " + COL_9 + " FROM " + TABLE_NAME2 +
-                " WHERE " + COL_5 + " = '" + day + "' AND "+ COL_6 + " = '" + month + "' AND "+ COL_7 + " = '" + year + "'";
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
-        if (csr.moveToFirst()) {
-            rv = csr.getString(csr.getColumnIndexOrThrow(COL_9));
         }
         return rv;
     }
