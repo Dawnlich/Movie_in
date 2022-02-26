@@ -86,6 +86,19 @@ public class Parking extends Activity {
                 printId(group,checkedId);
             }
         });
+
+        Button back = findViewById(R.id.button13);
+        Button next = findViewById(R.id.button12);
+
+        next.setOnClickListener(v -> {
+            Intent intent = new Intent(Parking.this, Parking.class);
+            startActivity(intent);
+        });
+
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(Parking.this, MoviesTimes.class);
+            startActivity(intent);
+        });
     }
 
     void printId(RadioGroup group, int checkedId){
@@ -101,19 +114,6 @@ public class Parking extends Activity {
                 Log.v("Failure", "false");
             }
         }
-        //getResources().getResourceEntryName(int resid);
 
-        Button back = findViewById(R.id.button13);
-        Button next = findViewById(R.id.button12);
-
-        next.setOnClickListener(v -> {
-            Intent intent = new Intent(Parking.this, Parking.class);
-            startActivity(intent);
-        });
-
-        back.setOnClickListener(v -> {
-            Intent intent = new Intent(Parking.this, MoviesTimes.class);
-            startActivity(intent);
-        });
     }
 }
