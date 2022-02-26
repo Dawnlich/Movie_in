@@ -3,9 +3,12 @@ package com.example.movie_in;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MoviesTimes extends Activity {
 
@@ -14,7 +17,7 @@ public class MoviesTimes extends Activity {
 
     int year, day, month;
     TextView date_view, movie;
-    String movieName, rating, story;
+    String movieName, rating, story, parking;
     Double runTime;
 
     @Override
@@ -38,9 +41,11 @@ public class MoviesTimes extends Activity {
         rating = db.getRating(day, month, year);
         runTime = db.getLength(day, month, year);
         story = db.getStory(day, month, year);
+        parking = db.getParking(day, month, year);
+
 
         String info = "";
-        info += "Name: " + movieName + " || Rating: " + rating;
+        info += "Name: " + movieName  + " || Rating: "  + rating;
         info += "\n";
         info += "Length of Movie: " + runTime + " hours";
         info += "\n";
@@ -52,7 +57,11 @@ public class MoviesTimes extends Activity {
         Button next = findViewById(R.id.button8);
 
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(MoviesTimes.this, Parking.class);
+            Intent intent = new Intent(MoviesTimes.this, MainActivity.class);
+            intent.putExtra("movie", movieName);
+            intent.putExtra("day", day);
+            intent.putExtra("year", year);
+            intent.putExtra("month", month);
             startActivity(intent);
         });
 
