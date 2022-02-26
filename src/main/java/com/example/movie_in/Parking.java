@@ -96,7 +96,10 @@ public class Parking extends Activity {
         Button next = (Button) findViewById(R.id.next1);
 
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(Parking.this, MainMenu.class);
+            Intent intent = new Intent(Parking.this, payment.class);
+            intent.putExtra("day", day);
+            intent.putExtra("year", year);
+            intent.putExtra("month", month);
             startActivity(intent);
         });
 
