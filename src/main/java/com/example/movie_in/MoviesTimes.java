@@ -3,6 +3,7 @@ package com.example.movie_in;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -39,7 +40,7 @@ public class MoviesTimes extends Activity {
         story = db.getStory(day, month, year);
 
         String info = "";
-        info += "Name: " + movieName  + " || Rating: "  + rating;
+        info += "Name: " + movieName + " || Rating: " + rating;
         info += "\n";
         info += "Length of Movie: " + runTime + " hours";
         info += "\n";
@@ -51,7 +52,7 @@ public class MoviesTimes extends Activity {
         Button next = findViewById(R.id.button8);
 
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(MoviesTimes.this, MainActivity.class);
+            Intent intent = new Intent(MoviesTimes.this, Parking.class);
             startActivity(intent);
         });
 
