@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MoviesTimes extends Activity {
 
 
@@ -13,7 +17,7 @@ public class MoviesTimes extends Activity {
 
     int year, day, month;
     TextView date_view, movie;
-    String movieName, rating, story;
+    String movieName, rating, story, parking;
     Double runTime;
 
     @Override
@@ -37,6 +41,8 @@ public class MoviesTimes extends Activity {
         rating = db.getRating(day, month, year);
         runTime = db.getLength(day, month, year);
         story = db.getStory(day, month, year);
+        parking = db.getParking(day, month, year);
+
 
         String info = "";
         info += "Name: " + movieName  + " || Rating: "  + rating;
@@ -52,6 +58,10 @@ public class MoviesTimes extends Activity {
 
         next.setOnClickListener(v -> {
             Intent intent = new Intent(MoviesTimes.this, MainActivity.class);
+            intent.putExtra("movie", movieName);
+            intent.putExtra("day", day);
+            intent.putExtra("year", year);
+            intent.putExtra("month", month);
             startActivity(intent);
         });
 

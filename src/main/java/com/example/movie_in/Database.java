@@ -169,5 +169,17 @@ public class Database extends SQLiteOpenHelper {
         return rv;
     }
 
+    public String getParking(int day, int month, int year) {
+        String rv ="Unkown";
+        String queryMV = "SELECT " + COL_10 + " FROM " + TABLE_NAME2 +
+                " WHERE " + COL_5 + " = '" + day + "' AND "+ COL_6 + " = '" + month + "' AND "+ COL_7 + " = '" + year + "'";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndexOrThrow(COL_10));
+        }
+        return rv;
+    }
+
 }
 
