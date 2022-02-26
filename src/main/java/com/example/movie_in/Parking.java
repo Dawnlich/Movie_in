@@ -7,22 +7,23 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 public class Parking extends Activity {
 
     RadioButton btn1, btn2, btn3, btn4, btn5, btn6, btn8, btn9, btn10, btn11;
-    RadioButton btn12, btn13, btn14, btn15, btn16, btn17, btn18, btn19;
+    RadioButton btn12, btn13, btn14, btn15, btn16, btn17, btn18;
     RadioGroup group1, group2, group3;
     RadioGroup[] rows;
 
-    //for parking
+    //variables
     String parking;
+    int year, day, month;
 
+    //database variables
     private Database db;
 
     @Override
@@ -33,9 +34,9 @@ public class Parking extends Activity {
         //connecting to the database
         db = new Database(this);
 
-        int year = (int) getIntent().getSerializableExtra("year");
-        int day = (int) getIntent().getSerializableExtra("day");
-        int month = (int) getIntent().getSerializableExtra("month");
+        year = (int) getIntent().getSerializableExtra("year");
+        day = (int) getIntent().getSerializableExtra("day");
+        month = (int) getIntent().getSerializableExtra("month");
 
         //getting the parking spots for the movie
         String num = db.getParking(day, month, year);
@@ -60,13 +61,17 @@ public class Parking extends Activity {
         btn16 = findViewById(R.id.radioButton_16);
         btn17 = findViewById(R.id.radioButton_17);
         btn18 = findViewById(R.id.radioButton_18);
+
         group1 = (RadioGroup)findViewById(R.id.top_row);
         group2 = (RadioGroup)findViewById(R.id.middle_row);
         group3 = (RadioGroup)findViewById(R.id.bottom_row);
+
         rows = new RadioGroup[] {group1, group2, group3};
+
         group1.clearCheck();
         group2.clearCheck();
         group3.clearCheck();
+
         group1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -87,16 +92,19 @@ public class Parking extends Activity {
             }
         });
 
-        Button back = findViewById(R.id.button13);
-        Button next = findViewById(R.id.button12);
+        Button back = (Button) findViewById(R.id.back1);
+        Button next = (Button) findViewById(R.id.next1);
 
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(Parking.this, Parking.class);
+            Intent intent = new Intent(Parking.this, MainMenu.class);
             startActivity(intent);
         });
 
         back.setOnClickListener(v -> {
             Intent intent = new Intent(Parking.this, MoviesTimes.class);
+            intent.putExtra("day", day);
+            intent.putExtra("year", year);
+            intent.putExtra("month", month);
             startActivity(intent);
         });
     }
