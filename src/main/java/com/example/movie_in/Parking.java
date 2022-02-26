@@ -9,6 +9,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Parking extends Activity {
 
     RadioButton btn1, btn2, btn3, btn4, btn5, btn6, btn8, btn9, btn10, btn11;
@@ -16,10 +20,28 @@ public class Parking extends Activity {
     RadioGroup group1, group2, group3;
     RadioGroup[] rows;
 
+    //for parking
+    String parking;
+
+    private Database db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parking_lot);
+
+        //connecting to the database
+        db = new Database(this);
+
+        int year = (int) getIntent().getSerializableExtra("year");
+        int day = (int) getIntent().getSerializableExtra("day");
+        int month = (int) getIntent().getSerializableExtra("month");
+
+        //getting the parking spots for the movie
+        String num = db.getParking(day, month, year);
+        String str[] = num.split(",");
+        List<String> al = new ArrayList<String>();
+        al = Arrays.asList(str);
 
         btn1 = findViewById(R.id.radioButton_01);
         btn2 = findViewById(R.id.radioButton_02);
@@ -80,5 +102,18 @@ public class Parking extends Activity {
             }
         }
         //getResources().getResourceEntryName(int resid);
+
+        Button back = findViewById(R.id.button13);
+        Button next = findViewById(R.id.button12);
+
+        next.setOnClickListener(v -> {
+            Intent intent = new Intent(Parking.this, Parking.class);
+            startActivity(intent);
+        });
+
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(Parking.this, MoviesTimes.class);
+            startActivity(intent);
+        });
     }
 }

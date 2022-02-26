@@ -57,7 +57,7 @@ public class MoviesTimes extends Activity {
         Button next = findViewById(R.id.button8);
 
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(MoviesTimes.this, MainActivity.class);
+            Intent intent = new Intent(MoviesTimes.this, Parking.class);
             intent.putExtra("movie", movieName);
             intent.putExtra("day", day);
             intent.putExtra("year", year);
