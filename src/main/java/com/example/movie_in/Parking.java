@@ -55,12 +55,19 @@ public class Parking extends Activity {
         Button back = findViewById(R.id.back1);
         Button next = findViewById(R.id.next1);
         //populateLot();
+
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(Parking.this, Parking.class);
+            Intent intent = new Intent(Parking.this, payment.class);
+            intent.putExtra("day", day);
+            intent.putExtra("year", year);
+            intent.putExtra("month", month);
             startActivity(intent);
         });
         back.setOnClickListener(v -> {
             Intent intent = new Intent(Parking.this, MoviesTimes.class);
+            intent.putExtra("day", day);
+            intent.putExtra("year", year);
+            intent.putExtra("month", month);
             startActivity(intent);
         });
     }

@@ -12,8 +12,8 @@
         android:layout_marginTop="9dp"
         android:layout_marginEnd="1dp"
         android:ems="10"
+        android:hint="CVV"
         android:inputType="textPersonName"
-        android:text="@string/cvv"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName3"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
 
@@ -80,8 +80,8 @@
         android:layout_marginEnd="18dp"
         android:layout_marginBottom="225dp"
         android:ems="10"
+        android:hint="Card Number"
         android:inputType="textPersonName"
-        android:text="@string/card_number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -92,8 +92,8 @@
         android:layout_height="48dp"
         android:layout_marginStart="1dp"
         android:ems="10"
+        android:hint="Exp. Date"
         android:inputType="textPersonName"
-        android:text="@string/exp_date"
         app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName5"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
         app:layout_constraintTop_toTopOf="@+id/editTextTextPersonName5" />
