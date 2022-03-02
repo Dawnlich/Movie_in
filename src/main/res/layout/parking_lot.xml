@@ -20,49 +20,56 @@
             android:id="@+id/top_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:onClick="handleCombinedClick">
 
             <RadioButton
                 android:id="@+id/radioButton_01"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:button="@drawable/car_icon" />
+                android:button="@drawable/car_icon"
+                android:onClick="handleCombinedClick"/>
 
             <RadioButton
                 android:id="@+id/radioButton_02"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:button="@drawable/car_icon" />
+                android:button="@drawable/car_icon"
+                android:onClick="handleCombinedClick"/>
 
             <RadioButton
                 android:id="@+id/radioButton_03"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:button="@drawable/car_icon" />
+                android:button="@drawable/car_icon"
+                android:onClick="handleCombinedClick"/>
 
             <RadioButton
                 android:id="@+id/radioButton_04"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:button="@drawable/car_icon" />
+                android:button="@drawable/car_icon"
+                android:onClick="handleCombinedClick"/>
 
             <RadioButton
                 android:id="@+id/radioButton_05"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:button="@drawable/car_icon" />
+                android:button="@drawable/car_icon"
+                android:onClick="handleCombinedClick"/>
 
             <RadioButton
                 android:id="@+id/radioButton_06"
                 android:layout_width="wrap_content"
                 android:layout_height="55dp"
                 android:layout_weight="1"
-                android:button="@drawable/car_icon" />
+                android:button="@drawable/car_icon"
+                android:onClick="handleCombinedClick"/>
         </RadioGroup>
 
         <RadioGroup
@@ -76,42 +83,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_15"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_16"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_17"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_18"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_19"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
             />
 
         </RadioGroup>
@@ -127,42 +140,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_09"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_10"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_11"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_12"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
                 <RadioButton
                     android:id="@+id/radioButton_13"
                     android:layout_width="wrap_content"
                     android:layout_height="55dp"
                     android:layout_weight="1"
-                    android:button="@drawable/car_icon" />
+                    android:button="@drawable/car_icon"
+                    android:onClick="handleCombinedClick"/>
 
             </RadioGroup>
 
