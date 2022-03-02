@@ -46,5 +46,9 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="payment">Payment</string>
+    <string name="cvv">CVV</string>
+    <string name="confirm2">confirm</string>
+    <string name="card_number">Card Number</string>
+    <string name="exp_date">Exp. Date</string>
 
 </resources>

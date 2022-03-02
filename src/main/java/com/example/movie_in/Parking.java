@@ -52,8 +52,8 @@ public class Parking extends Activity {
         //initRows();
 
 
-        Button back = findViewById(R.id.button13);
-        Button next = findViewById(R.id.button12);
+        Button back = findViewById(R.id.back1);
+        Button next = findViewById(R.id.next1);
         //populateLot();
         next.setOnClickListener(v -> {
             Intent intent = new Intent(Parking.this, Parking.class);
