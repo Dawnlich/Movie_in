@@ -55,13 +55,16 @@ public class payment extends Activity {
         info += "Email: " + email  + " || Date: "  + date;
         customer.setText(info);
 
+        int i =Integer.parseInt(people);
+        amount = i * 5.50;
+
         //showing all the info about the item that they wish to purchase
         String info2 = "";
         info2 += "Movie Name: " + movie  + " || Date Picked: "  + movieDate;
         info2 += "\n";
         info2 += "Parking spot: " + spot;
         info2 += "\n";
-        info2 += "Number of People(" + people +")";
+        info2 += "Number of People(" + people +")" + "x $5.50";
         info2 += "\n";
         info2 += "----------------------------------------------------------------";
         info2 += "\n";
