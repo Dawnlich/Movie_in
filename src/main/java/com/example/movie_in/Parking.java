@@ -27,7 +27,7 @@ public class Parking extends Activity {
     ArrayList<RadioGroup> rows;
 
     //for parking
-    String parking;
+    String parking = "No spot was selected";
     ArrayList<Integer> lot = new ArrayList<Integer>();
     private Database db;
 
@@ -59,22 +59,17 @@ public class Parking extends Activity {
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(ad);
 
-
-
-        //
-        al = Arrays.asList(str);
+        //group for each row
         group1 = (RadioGroup) findViewById(R.id.top_row);
         group2 = (RadioGroup) findViewById(R.id.middle_row);
         group3 = (RadioGroup) findViewById(R.id.bottom_row);
         Log.v("ParkingSpots", num);
 
-        //initRows();
-
-
+        //buttons
         Button back = findViewById(R.id.back1);
         Button next = findViewById(R.id.next1);
-        //populateLot();
 
+        //if the user select yes
         next.setOnClickListener(v -> {
             Intent intent = new Intent(Parking.this, payment.class);
             amount = spin.getSelectedItem().toString();
@@ -83,8 +78,11 @@ public class Parking extends Activity {
             intent.putExtra("month", month);
             intent.putExtra("amount", amount);
             intent.putExtra("email", email);
+            intent.putExtra("spot", parking);
             startActivity(intent);
         });
+
+        //if the user selects the back button
         back.setOnClickListener(v -> {
             Intent intent = new Intent(Parking.this, MoviesTimes.class);
             intent.putExtra("day", day);
@@ -94,7 +92,6 @@ public class Parking extends Activity {
             startActivity(intent);
         });
     }
-
 
 
     void generateLot(){

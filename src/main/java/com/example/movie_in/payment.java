@@ -4,17 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
 public class payment extends Activity {
 
+    //variables
     int year, day, month;
     TextView customer, cost;
     String email, date, movie, movieDate, spot, people;
     double amount;
-
+    EditText edit1, edit2, edit3;
     private Database db;
 
     @Override
@@ -28,6 +31,7 @@ public class payment extends Activity {
         month = (int) getIntent().getSerializableExtra("month");
         people = (String) getIntent().getSerializableExtra("amount");
         email = (String) getIntent().getSerializableExtra("email");
+        spot = (String) getIntent().getSerializableExtra("spot");
 
         //this will show what the data that the user select to the themselves
         customer = (TextView) findViewById(R.id.customer);
@@ -42,6 +46,14 @@ public class payment extends Activity {
         int monthCur = Calendar.getInstance().get(Calendar.MONTH) + 1;
         int dayCur = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         date = dayCur + "-" + monthCur + "-" + yearCur;
+
+        //credit card info stored
+        edit1 = (EditText)findViewById(R.id.editTextTextPersonName3);
+        String card =  edit1.getText().toString();
+        edit2 = (EditText)findViewById(R.id.editTextTextPersonName5);
+        String cvv =  edit2.getText().toString();
+        edit3 = (EditText)findViewById(R.id.editTextTextPersonName4);
+        String cardDate =  edit3.getText().toString();
 
         //database
         db = new Database(this);
@@ -74,7 +86,21 @@ public class payment extends Activity {
 
         next.setOnClickListener(v -> {
             Intent intent = new Intent(payment.this, MainMenu.class);
-            startActivity(intent);
+            if(edit1.getText().toString().trim().length() == 0) {
+                Toast.makeText(payment.this,
+                        "Please enter a card num!",
+                        Toast.LENGTH_SHORT).show();
+            }else if(edit2.getText().toString().trim().length() == 0) {
+                Toast.makeText(payment.this,
+                        "Please enter a card cvv!",
+                        Toast.LENGTH_SHORT).show();
+            }else if(edit3.getText().toString().trim().length() == 0)  {
+                Toast.makeText(payment.this,
+                        "Please enter a card date!",
+                        Toast.LENGTH_SHORT).show();
+            }else {
+                startActivity(intent);
+            }
         });
 
         back.setOnClickListener(v -> {

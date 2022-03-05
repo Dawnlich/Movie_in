@@ -88,11 +88,11 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName4"
-        android:layout_width="154dp"
+        android:layout_width="191dp"
         android:layout_height="48dp"
         android:layout_marginStart="1dp"
         android:ems="10"
-        android:hint="Exp. Date"
+        android:hint="Exp. Date(Month/Year)"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonName5"
         app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName3"
