@@ -10,29 +10,43 @@ public class payment extends Activity {
 
     int year, day, month;
     TextView customer, cost;
-    String email, date, movie, movieDate, spot;
-    int people;
+    String email, date, movie, movieDate, spot, people;
     double amount;
+
+    private Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.payment);
 
+        //gets data from the parking spot page
         year = (int) getIntent().getSerializableExtra("year");
         day = (int) getIntent().getSerializableExtra("day");
         month = (int) getIntent().getSerializableExtra("month");
+        people = (String) getIntent().getSerializableExtra("amount");
 
+        //this will show what the data that the user select to the themselves
         customer = (TextView) findViewById(R.id.customer);
         cost = (TextView) findViewById(R.id.cost);
 
+        //the buttons
         Button back = (Button) findViewById(R.id.BackP);
         Button next = (Button) findViewById(R.id.nextP);
 
+        //database
+        db = new Database(this);
+
+        //info about the movie
+        movieDate = day + "-" + (month + 1) + "-" + year;
+        movie = db.getMovie(day, month, year);
+
+        //showing the customer info to them
         String info = "";
         info += "Email: " + email  + " || Date: "  + date;
         customer.setText(info);
 
+        //showing all the info about the item that they wish to purchase
         String info2 = "";
         info2 += "Movie Name: " + movie  + " || Date Picked: "  + movieDate;
         info2 += "\n";

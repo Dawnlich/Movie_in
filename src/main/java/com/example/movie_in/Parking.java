@@ -5,10 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,26 +31,40 @@ public class Parking extends Activity {
     ArrayList<Integer> lot = new ArrayList<Integer>();
     private Database db;
 
+    //for the amount of people in a car
+    String[] people = {"1", "2", "3", "4"};
+    String amount = "";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parking_lot);
+
         //connecting to the database
         db = new Database(this);
         int year = (int) getIntent().getSerializableExtra("year");
         int day = (int) getIntent().getSerializableExtra("day");
         int month = (int) getIntent().getSerializableExtra("month");
+
         //getting the parking spots for the movie
         String num = db.getParking(day, month, year);
         String str[] = num.split(",");
         List<String> al = new ArrayList<String>();
 
+        //spinner for picking the amount of people in car
+        Spinner spin = findViewById(R.id.spinner1);
+        ArrayAdapter ad = new ArrayAdapter(this, android.R.layout.simple_spinner_item, people);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spin.setAdapter(ad);
+
+
+
+        //
         al = Arrays.asList(str);
-        group1 = (RadioGroup)findViewById(R.id.top_row);
-        group2 = (RadioGroup)findViewById(R.id.middle_row);
-        group3 = (RadioGroup)findViewById(R.id.bottom_row);
+        group1 = (RadioGroup) findViewById(R.id.top_row);
+        group2 = (RadioGroup) findViewById(R.id.middle_row);
+        group3 = (RadioGroup) findViewById(R.id.bottom_row);
         Log.v("ParkingSpots", num);
 
         //initRows();
@@ -58,9 +76,11 @@ public class Parking extends Activity {
 
         next.setOnClickListener(v -> {
             Intent intent = new Intent(Parking.this, payment.class);
+            amount = spin.getSelectedItem().toString();
             intent.putExtra("day", day);
             intent.putExtra("year", year);
             intent.putExtra("month", month);
+            intent.putExtra("amount", amount);
             startActivity(intent);
         });
         back.setOnClickListener(v -> {
@@ -71,6 +91,8 @@ public class Parking extends Activity {
             startActivity(intent);
         });
     }
+
+
 
     void generateLot(){
         Random rand = new Random();

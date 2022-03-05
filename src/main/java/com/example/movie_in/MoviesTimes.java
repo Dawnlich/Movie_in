@@ -17,6 +17,7 @@ public class MoviesTimes extends Activity {
     String movieName, rating, story, parking;
     Double runTime;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
