@@ -27,6 +27,8 @@ public class calendar extends Activity {
         calendar = (CalendarView) findViewById(R.id.calendar);
         date_view = (TextView) findViewById(R.id.date_view);
 
+        String email = (String) getIntent().getSerializableExtra("email");
+
         //variables for the buttons
         Button back = findViewById(R.id.button3);
         Button confirm = findViewById(R.id.button7);
@@ -60,6 +62,7 @@ public class calendar extends Activity {
                             intent.putExtra("day", pickDay);
                             intent.putExtra("year", pickYear);
                             intent.putExtra("month", pickMonth);
+                            intent.putExtra("email", email);
                             startActivity(intent);
                         }else{
                             Toast.makeText(calendar.this, "Please select either current day, or a future day!", Toast.LENGTH_SHORT).show();
@@ -78,6 +81,7 @@ public class calendar extends Activity {
         //when users clicks on back button
         back.setOnClickListener(v -> {
             Intent intent = new Intent(calendar.this, MainMenu.class);
+            intent.putExtra("email", email);
             startActivity(intent);
         });
     }

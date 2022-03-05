@@ -29,6 +29,7 @@ public class MoviesTimes extends Activity {
         year = (int) getIntent().getSerializableExtra("year");
         day = (int) getIntent().getSerializableExtra("day");
         month = (int) getIntent().getSerializableExtra("month");
+        String email = (String) getIntent().getSerializableExtra("email");
 
         String datePick = day + "-" + (month + 1) + "-" + year;
         date_view.setText(datePick);
@@ -60,11 +61,13 @@ public class MoviesTimes extends Activity {
             intent.putExtra("day", day);
             intent.putExtra("year", year);
             intent.putExtra("month", month);
+            intent.putExtra("email", email);
             startActivity(intent);
         });
 
         back.setOnClickListener(v -> {
             Intent intent = new Intent(MoviesTimes.this, calendar.class);
+            intent.putExtra("email", email);
             startActivity(intent);
         });
 

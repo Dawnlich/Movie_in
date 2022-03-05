@@ -12,6 +12,7 @@ public class MainActivity extends Activity {
     //variables
     EditText edit1, edit2;
     private Database db;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,9 @@ public class MainActivity extends Activity {
                         Intent intent = new Intent(MainActivity.this, Admin.class);
                         startActivity(intent);
                     }else {
+                        email = edit1.getText().toString();
                         Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                        intent.putExtra("email", email);
                         startActivity(intent);
                     }
                 }else{

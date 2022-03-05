@@ -46,6 +46,7 @@ public class Parking extends Activity {
         int year = (int) getIntent().getSerializableExtra("year");
         int day = (int) getIntent().getSerializableExtra("day");
         int month = (int) getIntent().getSerializableExtra("month");
+        String email = (String) getIntent().getSerializableExtra("email");
 
         //getting the parking spots for the movie
         String num = db.getParking(day, month, year);
@@ -81,6 +82,7 @@ public class Parking extends Activity {
             intent.putExtra("year", year);
             intent.putExtra("month", month);
             intent.putExtra("amount", amount);
+            intent.putExtra("email", email);
             startActivity(intent);
         });
         back.setOnClickListener(v -> {
@@ -88,6 +90,7 @@ public class Parking extends Activity {
             intent.putExtra("day", day);
             intent.putExtra("year", year);
             intent.putExtra("month", month);
+            intent.putExtra("email", email);
             startActivity(intent);
         });
     }

@@ -133,6 +133,7 @@ public class Database extends SQLiteOpenHelper {
         return rv;
     }
 
+    //gets the movie rating
     public String getRating(int day, int month, int year) {
         String rv = "No Rating!";
         String queryMV = "SELECT " + COL_8 + " FROM " + TABLE_NAME2 +
@@ -145,6 +146,7 @@ public class Database extends SQLiteOpenHelper {
         return rv;
     }
 
+    //gets the lenght of the moive
     public Double getLength(int day, int month, int year) {
         Double rv = 0.0;
         String queryMV = "SELECT " + COL_4 + " FROM " + TABLE_NAME2 +
@@ -157,6 +159,7 @@ public class Database extends SQLiteOpenHelper {
         return rv;
     }
 
+    //gets the story about the moive
     public String getStory(int day, int month, int year) {
         String rv ="Unkown";
         String queryMV = "SELECT " + COL_9 + " FROM " + TABLE_NAME2 +
@@ -169,6 +172,7 @@ public class Database extends SQLiteOpenHelper {
         return rv;
     }
 
+    //get the parking for the movie
     public String getParking(int day, int month, int year) {
         String rv ="Unkown";
         String queryMV = "SELECT " + COL_10 + " FROM " + TABLE_NAME2 +
