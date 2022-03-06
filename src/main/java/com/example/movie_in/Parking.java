@@ -51,7 +51,8 @@ public class Parking extends Activity {
         //getting the parking spots for the movie
         String num = db.getParking(day, month, year);
         String str[] = num.split(",");
-        List<String> al = new ArrayList<String>();
+        List<String> parkingList = new ArrayList<String>();
+        parkingList = Arrays.asList(str);
 
         //spinner for picking the amount of people in car
         Spinner spin = findViewById(R.id.spinner1);
