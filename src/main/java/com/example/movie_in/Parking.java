@@ -29,7 +29,6 @@ public class Parking extends Activity {
     //for parking
     String parking = "No spot was selected";
     ArrayList<Integer> lot = new ArrayList<Integer>();
-    List<String> parkingList = new ArrayList<String>();
     private Database db;
 
     //for the amount of people in a car
@@ -52,6 +51,7 @@ public class Parking extends Activity {
         //getting the parking spots for the movie
         String num = db.getParking(day, month, year);
         String str[] = num.split(",");
+        List<String> parkingList = new ArrayList<String>();
         parkingList = Arrays.asList(str);
 
         //spinner for picking the amount of people in car
