@@ -2,6 +2,7 @@ package com.example.movie_in;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,9 +15,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Parking extends Activity {
@@ -34,8 +39,12 @@ public class Parking extends Activity {
     //for the amount of people in a car
     String[] people = {"1", "2", "3", "4"};
     String amount = "";
-
-
+    HashMap<String, Integer> hash = new HashMap<String,Integer>();
+    List<String> parkingList = new ArrayList<String>();
+    List<String> newParkingList = new ArrayList<String>();
+    String parkingLetter =  "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R";
+    //parkingList.asList()
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +60,14 @@ public class Parking extends Activity {
         //getting the parking spots for the movie
         String num = db.getParking(day, month, year);
         String str[] = num.split(",");
-        List<String> parkingList = new ArrayList<String>();
+        parkingList = new ArrayList<String>();
         parkingList = Arrays.asList(str);
+        String letter[] = parkingLetter.split(",");
+        newParkingList = new ArrayList<String>();
+        newParkingList = Arrays.asList(letter);
+
+
+        //Test with
 
         //spinner for picking the amount of people in car
         Spinner spin = findViewById(R.id.spinner1);
@@ -69,6 +84,15 @@ public class Parking extends Activity {
         //buttons
         Button back = findViewById(R.id.back1);
         Button next = findViewById(R.id.next1);
+
+        //Establish full and available parking lots
+        //TODO: send full alphabet string with placeholder values(X) for occupied spaces. Compare received string with parkingLetter string and update radioButtons.
+        //todo
+        populateHash();
+        createIds();
+        populateLots();
+        //printHash();
+        setFull();
 
         //if the user select yes
         next.setOnClickListener(v -> {
@@ -94,39 +118,92 @@ public class Parking extends Activity {
         });
     }
 
-
+    void populateHash(){
+        for(String s: newParkingList){
+            hash.put(s,-1);
+        }
+    }
+//["a",-1]["b",-1]["c",-1]["d",-1]["e",-1]
+    /*
     void generateLot(){
         Random rand = new Random();
         for(int i = 0; i < 18; i++){
             lot.add(rand.nextInt());
         }
     }
+    */
 
-    void populateLot(){
-        int lastNum = 0;
+    void createIds(){
         Random rand = new Random();
         RadioGroup[] parkingRows = new RadioGroup[]{group1, group2, group3};
         for(int i = 0; i < parkingRows.length;i++){
         int rowCount = parkingRows[i].getChildCount();
-            for(int j = lastNum; j < lastNum+rowCount; j++){
-                View current = parkingRows[i].getChildAt(j-lastNum);
-                switch(rand.nextInt()){
-                    case 0:
-                        ((RadioGroup)current).setEnabled(false);
-                        break;
-                    case 1:
-                        ((RadioGroup)current).setEnabled(true);
-                        break;
-                }
-                lastNum = j;
+            for(int j = 0; j < rowCount; j++){
+                lot.add(parkingRows[i].getChildAt(j).getId());
+            }
+        }
+        Log.e("lot size", String.valueOf(lot.size()));
+        Log.e("hash size", String.valueOf(hash.size()));
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    void populateLots(){
+        int i = 0;
+        for (Map.Entry<String, Integer> entry : hash.entrySet()) {
+            String k = entry.getKey();
+            Integer v = entry.getValue();
+            hash.replace(k, lot.get(i));
+            i++;
+        }
+
+    }
+    //for testing purposes
+    /*
+    void printHash(){
+        for (Map.Entry<String, Integer> entry : hash.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            Log.e("KeyValue",key + " " + String.valueOf(value));
+            // do stuff
+        }
+    }
+    */
+
+    //for testing purposes
+    void findKey(View v){
+        for (Map.Entry<String, Integer> entry : hash.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            if(value == v.getId()){
+                parking = key;
+                Log.e("Found", "Match was found");
             }
         }
     }
 
+    //
+    void setFull(){
+        int i = 0;
+        for (Map.Entry<String, Integer> entry : hash.entrySet()) {
+            String k = entry.getKey();
+            if(hash.get(k) != -1){
+                RadioButton current = findViewById(hash.get(k));
+                current.setEnabled(true);
+            }
+            i++;
+        }
+    }
+
+//HashMap<Character, Integer> hash => k,v pair
     public void handleCombinedClick(View view) {
         group1.clearCheck();
         group2.clearCheck();
         group3.clearCheck();
-        ((RadioButton) view).setChecked(true);
+        setFull();
+        findKey(view);
+        if(((RadioButton) view).isEnabled() == true){
+            ((RadioButton) view).setChecked(true);
+        }
     }
 }
