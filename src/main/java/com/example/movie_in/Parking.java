@@ -87,6 +87,7 @@ public class Parking extends Activity {
 
         //Establish full and available parking lots
         //TODO: send full alphabet string with placeholder values(X) for occupied spaces. Compare received string with parkingLetter string and update radioButtons.
+        //todo
         populateHash();
         createIds();
         populateLots();
