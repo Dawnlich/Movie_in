@@ -92,7 +92,6 @@ public class payment extends Activity {
         info2 += "\n";
         info2 += "Total Cost: $" + amount;
         info2 += "\n";
-        info2 += Arrays.deepToString(parkingList.toArray());
         cost.setText(info2);
 
         //when the user clicks on the next button
@@ -110,7 +109,13 @@ public class payment extends Activity {
                     }
                     boolean updated = db.updateParking(day, month, year, listString);
                     if(updated == false){
-                        Intent intent = new Intent(payment.this, MainMenu.class);
+                        Intent intent = new Intent(payment.this, receipt.class);
+                        intent.putExtra("day", day);
+                        intent.putExtra("year", year);
+                        intent.putExtra("month", month);
+                        intent.putExtra("amount", amount);
+                        intent.putExtra("email", email);
+                        intent.putExtra("spot", spot);
                         startActivity(intent);
                     }else{
                         Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();

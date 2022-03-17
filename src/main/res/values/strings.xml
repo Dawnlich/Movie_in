@@ -50,5 +50,7 @@
     <string name="confirm2">confirm</string>
     <string name="card_number">Card Number</string>
     <string name="exp_date">Exp. Date</string>
+    <string name="receipt">Receipt</string>
+    <string name="home">Home</string>
 
 </resources>

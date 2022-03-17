@@ -17,6 +17,8 @@ public class calendar extends Activity {
     TextView date_view;
     int pickYear, pickDay, pickMonth;
 
+    //database variable
+    private Database db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,9 @@ public class calendar extends Activity {
         int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
         int day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
 
+        //making a variable to call the database functions
+        db = new Database(this);
+
 
         //when a user selects a date
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -58,12 +63,17 @@ public class calendar extends Activity {
                 if(pickYear == year) {
                     if(pickMonth >= month){
                         if(pickDay >= day || pickMonth > month) {
-                            Intent intent = new Intent(calendar.this, MoviesTimes.class);
-                            intent.putExtra("day", pickDay);
-                            intent.putExtra("year", pickYear);
-                            intent.putExtra("month", pickMonth);
-                            intent.putExtra("email", email);
-                            startActivity(intent);
+                            String checkMovie = db.getMovie(pickDay, pickMonth, pickYear);
+                            if(!checkMovie.equals("No Movie!")){
+                                Intent intent = new Intent(calendar.this, MoviesTimes.class);
+                                intent.putExtra("day", pickDay);
+                                intent.putExtra("year", pickYear);
+                                intent.putExtra("month", pickMonth);
+                                intent.putExtra("email", email);
+                                startActivity(intent);
+                            }else{
+                                Toast.makeText(calendar.this, "There is no movie on this Date! Please select another date.", Toast.LENGTH_SHORT).show();
+                            }
                         }else{
                             Toast.makeText(calendar.this, "Please select either current day, or a future day!", Toast.LENGTH_SHORT).show();
                         }
