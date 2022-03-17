@@ -23,7 +23,6 @@ public class payment extends Activity {
     double amount;
     EditText edit1, edit2, edit3;
     private Database db;
-    String answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +113,7 @@ public class payment extends Activity {
                         intent.putExtra("year", year);
                         intent.putExtra("month", month);
                         intent.putExtra("amount", amount);
+                        intent.putExtra("people", people);
                         intent.putExtra("email", email);
                         intent.putExtra("spot", spot);
                         startActivity(intent);

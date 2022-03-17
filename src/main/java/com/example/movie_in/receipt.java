@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import java.util.Calendar;
+import java.util.Random;
 
 public class receipt extends Activity {
 
@@ -29,7 +30,8 @@ public class receipt extends Activity {
         year = (int) getIntent().getSerializableExtra("year");
         day = (int) getIntent().getSerializableExtra("day");
         month = (int) getIntent().getSerializableExtra("month");
-        people = (String) getIntent().getSerializableExtra("amount");
+        amount = (double) getIntent().getSerializableExtra("amount");
+        people = (String) getIntent().getSerializableExtra("people");
         email = (String) getIntent().getSerializableExtra("email");
         spot = (String) getIntent().getSerializableExtra("spot");
 
@@ -47,14 +49,17 @@ public class receipt extends Activity {
         movieDate = day + "-" + (month + 1) + "-" + year;
         movie = db.getMovie(day, month, year);
 
+        //will random product a ticket number for the customer
+        Random rand = new Random();
+        int ticketNum = rand.nextInt(1000);
+
         //showing the customer info to them
         String info = "";
         info += "Email: " + email  + " || Date: "  + date;
+        info += "\n";
+        info += "Ticket number: " + ticketNum;
         customerInfo.setText(info);
 
-        //times about of people in the vehicle to $5.50
-        int i =Integer.parseInt(people);
-        amount = i * 5.50;
 
         //showing all the info about the item that they wish to purchase
         String info2 = "";
