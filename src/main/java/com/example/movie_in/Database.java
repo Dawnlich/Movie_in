@@ -146,7 +146,7 @@ public class Database extends SQLiteOpenHelper {
         return rv;
     }
 
-    //gets the lenght of the moive
+    //gets the length of the movie
     public Double getLength(int day, int month, int year) {
         Double rv = 0.0;
         String queryMV = "SELECT " + COL_4 + " FROM " + TABLE_NAME2 +
@@ -159,7 +159,7 @@ public class Database extends SQLiteOpenHelper {
         return rv;
     }
 
-    //gets the story about the moive
+    //gets the story about the movie
     public String getStory(int day, int month, int year) {
         String rv ="Unkown";
         String queryMV = "SELECT " + COL_9 + " FROM " + TABLE_NAME2 +
@@ -183,6 +183,18 @@ public class Database extends SQLiteOpenHelper {
             rv = csr.getString(csr.getColumnIndexOrThrow(COL_10));
         }
         return rv;
+    }
+
+    //rewriting the parking list for the movie
+    public boolean updateParking(int day, int month, int year, String newList) {
+        String queryMV = "UPDATE " + TABLE_NAME2 + " SET " + COL_10 + " = '" + newList +
+                "' WHERE " + COL_5 + " = '" + day + "' AND "+ COL_6 + " = '" + month + "' AND "+ COL_7 + " = '" + year + "'";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
+        if (csr.getCount() > 0)
+            return true;
+        else
+            return false;
     }
 
 }

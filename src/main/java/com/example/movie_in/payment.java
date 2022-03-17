@@ -8,7 +8,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 
 public class payment extends Activity {
 
@@ -16,9 +19,11 @@ public class payment extends Activity {
     int year, day, month;
     TextView customer, cost;
     String email, date, movie, movieDate, spot, people;
+    String listString = "";
     double amount;
     EditText edit1, edit2, edit3;
     private Database db;
+    String answer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,11 @@ public class payment extends Activity {
         //database
         db = new Database(this);
 
+        //double checking the parking
+        String num = db.getParking(day, month, year);
+        String str[] = num.split(",");
+        ArrayList<String> parkingList = new ArrayList<String>(Arrays.asList(str));
+
         //info about the movie
         movieDate = day + "-" + (month + 1) + "-" + year;
         movie = db.getMovie(day, month, year);
@@ -82,27 +92,34 @@ public class payment extends Activity {
         info2 += "\n";
         info2 += "Total Cost: $" + amount;
         info2 += "\n";
+        info2 += Arrays.deepToString(parkingList.toArray());
         cost.setText(info2);
 
+        //when the user clicks on the next button
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(payment.this, MainMenu.class);
-            if(edit1.getText().toString().trim().length() == 0) {
-                Toast.makeText(payment.this,
-                        "Please enter a card num!",
-                        Toast.LENGTH_SHORT).show();
-            }else if(edit2.getText().toString().trim().length() == 0) {
-                Toast.makeText(payment.this,
-                        "Please enter a card cvv!",
-                        Toast.LENGTH_SHORT).show();
-            }else if(edit3.getText().toString().trim().length() == 0)  {
-                Toast.makeText(payment.this,
-                        "Please enter a card date!",
-                        Toast.LENGTH_SHORT).show();
-            }else {
-                startActivity(intent);
+            for(int j = 0; j < parkingList.size(); j++){
+                if(spot.equals(parkingList.get(j))){
+                    parkingList.remove(j);
+                    for (int k = 0; k < parkingList.size(); k++)
+                    {
+                        if(k == 0){
+                            listString += parkingList.get(k);
+                        }else {
+                            listString += "," + parkingList.get(k);
+                        }
+                    }
+                    boolean updated = db.updateParking(day, month, year, listString);
+                    if(updated == false){
+                        Intent intent = new Intent(payment.this, MainMenu.class);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
         });
 
+        //when the user clicks on the prev button
         back.setOnClickListener(v -> {
             Intent intent = new Intent(payment.this, Parking.class);
             intent.putExtra("day", day);

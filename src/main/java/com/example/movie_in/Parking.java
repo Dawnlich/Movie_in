@@ -32,7 +32,7 @@ public class Parking extends Activity {
     ArrayList<RadioGroup> rows;
 
     //for parking
-    String parking = "No spot was selected";
+    String parking = "";
     ArrayList<Integer> lot = new ArrayList<Integer>();
     private Database db;
 
@@ -44,6 +44,7 @@ public class Parking extends Activity {
     List<String> newParkingList = new ArrayList<String>();
     String parkingLetter =  "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R";
     //parkingList.asList()
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,7 @@ public class Parking extends Activity {
 
         //if the user select yes
         next.setOnClickListener(v -> {
+            if(parking != ""){
             Intent intent = new Intent(Parking.this, payment.class);
             amount = spin.getSelectedItem().toString();
             intent.putExtra("day", day);
@@ -105,6 +107,11 @@ public class Parking extends Activity {
             intent.putExtra("email", email);
             intent.putExtra("spot", parking);
             startActivity(intent);
+            }else{
+                Toast.makeText(Parking.this,
+                        "Please select a spot!",
+                        Toast.LENGTH_SHORT).show();
+            }
         });
 
         //if the user selects the back button
@@ -123,15 +130,6 @@ public class Parking extends Activity {
             hash.put(s,-1);
         }
     }
-//["a",-1]["b",-1]["c",-1]["d",-1]["e",-1]
-    /*
-    void generateLot(){
-        Random rand = new Random();
-        for(int i = 0; i < 18; i++){
-            lot.add(rand.nextInt());
-        }
-    }
-    */
 
     void createIds(){
         Random rand = new Random();
@@ -158,17 +156,6 @@ public class Parking extends Activity {
         }
 
     }
-    //for testing purposes
-    /*
-    void printHash(){
-        for (Map.Entry<String, Integer> entry : hash.entrySet()) {
-            String key = entry.getKey();
-            Integer value = entry.getValue();
-            Log.e("KeyValue",key + " " + String.valueOf(value));
-            // do stuff
-        }
-    }
-    */
 
     //for testing purposes
     void findKey(View v){
