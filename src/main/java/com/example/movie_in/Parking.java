@@ -63,10 +63,11 @@ public class Parking extends Activity {
         String str[] = num.split(",");
         parkingList = new ArrayList<String>();
         parkingList = Arrays.asList(str);
+        //Sample Testing Value
         String letter[] = parkingLetter.split(",");
         newParkingList = new ArrayList<String>();
         newParkingList = Arrays.asList(letter);
-
+        Log.v("Parking", String.valueOf(str));
 
         //Test with
 
@@ -148,14 +149,20 @@ public class Parking extends Activity {
     @RequiresApi(api = Build.VERSION_CODES.N)
     void populateLots(){
         int i = 0;
+        int samplePointer = 0;
+        int dataPointer = 0;
         for (Map.Entry<String, Integer> entry : hash.entrySet()) {
-            String k = entry.getKey();
-            Integer v = entry.getValue();
-            hash.replace(k, lot.get(i));
+            String key = entry.getKey();
+            if(parkingList.contains(key)){
+                String k = entry.getKey();
+                Integer v = entry.getValue();
+                hash.replace(k, lot.get(i));
+            }
             i++;
         }
-
+        Log.e("Hash",String.valueOf(hash));
     }
+
 
     //for testing purposes
     void findKey(View v){
@@ -171,14 +178,12 @@ public class Parking extends Activity {
 
     //
     void setFull(){
-        int i = 0;
         for (Map.Entry<String, Integer> entry : hash.entrySet()) {
             String k = entry.getKey();
             if(hash.get(k) != -1){
                 RadioButton current = findViewById(hash.get(k));
                 current.setEnabled(true);
             }
-            i++;
         }
     }
 
