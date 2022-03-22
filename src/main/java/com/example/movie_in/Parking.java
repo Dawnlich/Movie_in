@@ -42,7 +42,7 @@ public class Parking extends Activity {
     HashMap<String, Integer> hash = new HashMap<String,Integer>();
     List<String> parkingList = new ArrayList<String>();
     List<String> newParkingList = new ArrayList<String>();
-    String parkingLetter =  "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R";
+    String parkingLetter =  "";
     //parkingList.asList()
 
     @RequiresApi(api = Build.VERSION_CODES.N)
