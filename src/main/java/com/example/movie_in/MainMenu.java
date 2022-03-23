@@ -25,7 +25,7 @@ public class MainMenu extends Activity {
 
         //when the user clicks on the account button
         account.setOnClickListener(v -> {
-            Intent intent = new Intent(MainMenu.this, MainActivity.class);
+            Intent intent = new Intent(MainMenu.this, account.class);
             startActivity(intent);
         });
 
