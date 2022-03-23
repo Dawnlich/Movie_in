@@ -75,7 +75,7 @@ public class Parking extends Activity {
         ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spin.setAdapter(ad);
 
-        //group for each row1
+        //group for each row
         group1 = (RadioGroup) findViewById(R.id.top_row);
         group2 = (RadioGroup) findViewById(R.id.middle_row);
         group3 = (RadioGroup) findViewById(R.id.bottom_row);
