@@ -18,6 +18,7 @@ public class SignUp extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signup);
 
+
         //this takes the input from the user for the sign-up page
         edit1 = (EditText)findViewById(R.id.editTextTextEmailAddress);
         edit2 = (EditText)findViewById(R.id.editTextTextPassword);
