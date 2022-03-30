@@ -12,13 +12,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 public class payment extends Activity {
 
     //variables
     int year, day, month;
     TextView customer, cost;
-    String email, date, movie, movieDate, spot, people;
+    String email, date, movie, movieDate, spot, people, ticket;
     String listString = "";
     double amount;
     EditText edit1, edit2, edit3;
@@ -71,11 +72,21 @@ public class payment extends Activity {
         movieDate = day + "-" + (month + 1) + "-" + year;
         movie = db.getMovie(day, month, year);
 
+        do{
+            Random rand = new Random();
+            int ticketNum = rand.nextInt(1000);
+            ticket = Integer.toString(ticketNum);
+        }while(db.checkTicket(ticket) == true);
+
         //showing the customer info to them
         String info = "";
         info += "Email: " + email  + " || Date: "  + date;
+        info += "\n";
+        info += "Random Ticket Number: " + ticket;
         customer.setText(info);
 
+
+        //money
         int i =Integer.parseInt(people);
         amount = i * 5.50;
 
@@ -93,32 +104,43 @@ public class payment extends Activity {
         info2 += "\n";
         cost.setText(info2);
 
+        String cost = Double.toString(amount);
+
         //when the user clicks on the next button
         next.setOnClickListener(v -> {
-            for(int j = 0; j < parkingList.size(); j++){
-                if(spot.equals(parkingList.get(j))){
-                    parkingList.remove(j);
-                    for (int k = 0; k < parkingList.size(); k++)
-                    {
-                        if(k == 0){
-                            listString += parkingList.get(k);
-                        }else {
-                            listString += "," + parkingList.get(k);
+            if(edit1.getText().toString().trim().length() == 0){
+                Toast.makeText(payment.this, "Please enter a card num!", Toast.LENGTH_SHORT).show();
+            }else if(edit3.getText().toString().trim().length() == 0){
+                Toast.makeText(payment.this, "Please enter a exp. date!", Toast.LENGTH_SHORT).show();
+            }else if(edit2.getText().toString().trim().length() == 0){
+                Toast.makeText(payment.this, "Please enter a cvv code!", Toast.LENGTH_SHORT).show();
+            }else {
+                for (int j = 0; j < parkingList.size(); j++) {
+                    if (spot.equals(parkingList.get(j))) {
+                        parkingList.remove(j);
+                        for (int k = 0; k < parkingList.size(); k++) {
+                            if (k == 0) {
+                                listString += parkingList.get(k);
+                            } else {
+                                listString += "," + parkingList.get(k);
+                            }
                         }
-                    }
-                    boolean updated = db.updateParking(day, month, year, listString);
-                    if(updated == false){
-                        Intent intent = new Intent(payment.this, receipt.class);
-                        intent.putExtra("day", day);
-                        intent.putExtra("year", year);
-                        intent.putExtra("month", month);
-                        intent.putExtra("amount", amount);
-                        intent.putExtra("people", people);
-                        intent.putExtra("email", email);
-                        intent.putExtra("spot", spot);
-                        startActivity(intent);
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+                        boolean updated = db.updateParking(day, month, year, listString);
+                        if (updated == false) {
+                            db.insertTicket(email, ticket, cost, date, spot);
+                            Intent intent = new Intent(payment.this, receipt.class);
+                            intent.putExtra("day", day);
+                            intent.putExtra("year", year);
+                            intent.putExtra("month", month);
+                            intent.putExtra("amount", amount);
+                            intent.putExtra("people", people);
+                            intent.putExtra("email", email);
+                            intent.putExtra("spot", spot);
+                            intent.putExtra("ticket", ticket);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             }
