@@ -66,7 +66,7 @@ public class account extends Activity {
 
         //when the user click on the logout button
         history.setOnClickListener(v -> {
-            Intent intent = new Intent(account.this, MainMenu.class);
+            Intent intent = new Intent(account.this, paymentHistory.class);
             intent.putExtra("email", edit1.getText().toString());
             startActivity(intent);
         });
