@@ -43,7 +43,6 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="payment">Payment</string>
     <string name="cvv">CVV</string>
@@ -52,5 +51,7 @@
     <string name="exp_date">Exp. Date</string>
     <string name="receipt">Receipt</string>
     <string name="home">Home</string>
+    <string name="back">Back</string>
+    <string name="payment_history">Payment History</string>
 
 </resources>
