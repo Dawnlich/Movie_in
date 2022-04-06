@@ -281,5 +281,53 @@ public class Database extends SQLiteOpenHelper {
             return false;
     }
 
+    public ArrayList<String> getTicketHistory(String email){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from payments", null );
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndexOrThrow(COL_12)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<String> getSpotHistory(String email){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from payments", null );
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndexOrThrow(COL_15)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<String> getCostHistory(String email){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from payments", null );
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndexOrThrow(COL_13)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<String> getDateHistory(String email){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from payments", null );
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndexOrThrow(COL_14)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
 }
 
