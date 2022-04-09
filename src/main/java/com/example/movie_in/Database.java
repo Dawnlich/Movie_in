@@ -284,7 +284,7 @@ public class Database extends SQLiteOpenHelper {
     public ArrayList<String> getTicketHistory(String email){
         ArrayList<String> array_list = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from payments", null );
+        Cursor res =  db.rawQuery( "select * from payments WHERE EMAIL = ?", new String[]{email});
         res.moveToFirst();
         while(res.isAfterLast() == false){
             array_list.add(res.getString(res.getColumnIndexOrThrow(COL_12)));
@@ -296,7 +296,7 @@ public class Database extends SQLiteOpenHelper {
     public ArrayList<String> getSpotHistory(String email){
         ArrayList<String> array_list = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from payments", null );
+        Cursor res =  db.rawQuery( "select * from payments WHERE EMAIL = ?", new String[]{email});
         res.moveToFirst();
         while(res.isAfterLast() == false){
             array_list.add(res.getString(res.getColumnIndexOrThrow(COL_15)));
@@ -308,7 +308,7 @@ public class Database extends SQLiteOpenHelper {
     public ArrayList<String> getCostHistory(String email){
         ArrayList<String> array_list = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from payments", null );
+        Cursor res =  db.rawQuery( "select * from payments WHERE EMAIL = ?", new String[]{email});
         res.moveToFirst();
         while(res.isAfterLast() == false){
             array_list.add(res.getString(res.getColumnIndexOrThrow(COL_13)));
@@ -320,7 +320,7 @@ public class Database extends SQLiteOpenHelper {
     public ArrayList<String> getDateHistory(String email){
         ArrayList<String> array_list = new ArrayList<String>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from payments", null );
+        Cursor res =  db.rawQuery( "select * from payments WHERE EMAIL = ?", new String[]{email});
         res.moveToFirst();
         while(res.isAfterLast() == false){
             array_list.add(res.getString(res.getColumnIndexOrThrow(COL_14)));
