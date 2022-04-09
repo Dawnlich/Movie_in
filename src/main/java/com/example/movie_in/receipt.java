@@ -79,6 +79,7 @@ public class receipt extends Activity {
         //when the clicks on the home button bring them back to the main menu
         home.setOnClickListener(v -> {
             Intent intent = new Intent(receipt.this, MainMenu.class);
+            intent.putExtra("email", email);
             startActivity(intent);
         });
 

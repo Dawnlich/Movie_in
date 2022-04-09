@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ShowMovieDelete extends Activity {
 
@@ -20,7 +21,7 @@ public class ShowMovieDelete extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.movie_times_layout);
+        setContentView(R.layout.deletemovie);
 
         date_view = (TextView) findViewById(R.id.date_view);
         movie = (TextView) findViewById(R.id.movie);
@@ -55,8 +56,12 @@ public class ShowMovieDelete extends Activity {
         Button next = findViewById(R.id.button8);
 
         next.setOnClickListener(v -> {
-            Intent intent = new Intent(ShowMovieDelete.this, MainActivity.class);
-            startActivity(intent);
+            if(db.deleteMovie(movieName) == true){
+                Intent intent = new Intent(ShowMovieDelete.this, MainActivity.class);
+                startActivity(intent);
+            }else{
+                Toast.makeText(getApplicationContext(), "Error!", Toast.LENGTH_SHORT).show();
+            }
         });
 
         back.setOnClickListener(v -> {

@@ -329,5 +329,15 @@ public class Database extends SQLiteOpenHelper {
         return array_list;
     }
 
+    //this function will delete movies for the admin
+    public Boolean deleteMovie(String name) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        int num = db.delete(TABLE_NAME2,"MOVIES = ?",new String[] {name});
+        if(num > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 

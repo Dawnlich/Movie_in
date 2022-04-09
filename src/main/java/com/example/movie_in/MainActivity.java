@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
             }else{
                 Boolean checking = db.CheckLogin(edit1.getText().toString(), edit2.getText().toString());
                 if(checking == true) {
-                    if(edit1.getText().toString().equals("admin") && edit2.getText().toString().equals("123")) {
+                    if(edit1.getText().toString().equals("iAdmin") && edit2.getText().toString().equals("123")) {
                         Intent intent = new Intent(MainActivity.this, Admin.class);
                         startActivity(intent);
                     }else if(edit1.getText().toString().equals("dAdmin") && edit2.getText().toString().equals("123")){
