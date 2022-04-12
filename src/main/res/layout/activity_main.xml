@@ -7,6 +7,20 @@
     tools:context=".MainActivity">
 
 
+    <LinearLayout
+        android:layout_width="315dp"
+        android:layout_height="526dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/gradient"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+    </LinearLayout>
+
     <EditText
         android:id="@+id/signUpEmail"
         android:layout_width="wrap_content"
@@ -20,6 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/edittextrounded"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
@@ -82,6 +97,7 @@
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:minHeight="48dp"
+        android:background="@drawable/edittextrounded"
         app:layout_constraintEnd_toEndOf="@+id/signUpEmail"
         app:layout_constraintTop_toBottomOf="@+id/signUpEmail"
         />

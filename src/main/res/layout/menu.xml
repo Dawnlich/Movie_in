@@ -5,37 +5,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="159dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="194dp"
-        android:layout_marginBottom="78dp"
-        android:text="@string/account"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="159dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="177dp"
-        android:text="@string/purchase_a_ticket"
-        app:layout_constraintBottom_toTopOf="@+id/button6"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button5" />
-
-    <Button
-        android:id="@+id/button6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:text="@string/logout"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="321dp"
+        android:layout_height="597dp"
+        android:background="@drawable/gradient"
+        android:gravity="center"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="162dp"
+            android:layout_height="75dp"
+            android:layout_marginBottom="40dp"
+            android:text="@string/purchase_a_ticket" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="156dp"
+            android:layout_height="67dp"
+            android:layout_marginBottom="78dp"
+            android:text="@string/account" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="@string/logout" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
