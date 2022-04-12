@@ -192,6 +192,18 @@ public class Database extends SQLiteOpenHelper {
             return false;
     }
 
+    //update the user email
+    public boolean updateEmailHistory(String email, String newEmail) {
+        String queryMV = "UPDATE " + TABLE_NAME3 + " SET " + COL_11 + " = '" + newEmail +
+                "' WHERE " + COL_11 + " = '" + email + "'";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
+        if (csr.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
     //update the user password
     public boolean updatePassword(String email, String newPassword) {
         String queryMV = "UPDATE " + TABLE_NAME + " SET " + COL_2 + " = '" + newPassword +

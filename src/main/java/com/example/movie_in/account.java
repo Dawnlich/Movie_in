@@ -44,11 +44,14 @@ public class account extends Activity {
             edit2 = (EditText)findViewById(R.id.newPassword);
             if(edit3.getText().toString().trim().length() != 0 && edit2.getText().toString().equals(edit3.getText().toString())) {
                 boolean checkUpdateEmail = db.updateEmail(email, edit1.getText().toString());
+                boolean updateEmailHistory = db.updateEmailHistory(email, edit1.getText().toString());
                 boolean checkUpdatePassword = db.updatePassword(email, edit2.getText().toString());
                 if (checkUpdateEmail != true || checkUpdatePassword != true) {
-                    Intent intent = new Intent(account.this, MainMenu.class);
-                    intent.putExtra("email", edit1.getText().toString());
-                    startActivity(intent);
+                    if(updateEmailHistory != true) {
+                        Intent intent = new Intent(account.this, MainMenu.class);
+                        intent.putExtra("email", edit1.getText().toString());
+                        startActivity(intent);
+                    }
                 } else {
                     Toast.makeText(account.this, "Error!", Toast.LENGTH_SHORT).show();
                 }
