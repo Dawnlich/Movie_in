@@ -32,7 +32,7 @@
                 android:id="@+id/calendar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#6EBFDB"></CalendarView>
+                android:background="#6E89DB"></CalendarView>
     </androidx.cardview.widget.CardView>
 
     <Button

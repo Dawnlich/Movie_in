@@ -25,6 +25,9 @@
         android:text="@string/signUp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/backButton1"
+        app:layout_constraintTop_toBottomOf="@+id/linear_container"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
@@ -35,26 +38,28 @@
         android:layout_marginBottom="16dp"
         android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linear_container" />
 
     <LinearLayout
-        android:layout_width="315dp"
-        android:layout_height="526dp"
+        android:id="@+id/linear_container"
+        android:layout_width="296dp"
+        android:layout_height="456dp"
+        android:background="@drawable/gradient"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.277"
-        android:background="@drawable/gradient">
+        app:layout_constraintVertical_bias="0.348">
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/email"
             android:layout_marginTop="180dp"
+            android:text="@string/email"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <EditText
@@ -62,10 +67,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="45dp"
+            android:background="@drawable/edittextrounded"
             android:ems="10"
             android:hint="@string/enter_email2"
             android:inputType="textEmailAddress"
-            android:background="@drawable/edittextrounded"
             android:minHeight="48dp" />
 
         <TextView
@@ -80,10 +85,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="55dp"
+            android:background="@drawable/edittextrounded"
             android:ems="10"
             android:hint="@string/enter_passwordSignUp"
             android:inputType="textPassword"
-            android:background="@drawable/edittextrounded"
             android:minHeight="48dp" />
 
         <TextView
