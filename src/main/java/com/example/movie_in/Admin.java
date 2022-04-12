@@ -54,7 +54,7 @@ public class Admin extends Activity {
             String rate = rating.getText().toString();
             String movie = movieName.getText().toString();
             String about = story.getText().toString();
-            String parking =  "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T";
+            String parking =  "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R";
 
 
             //conditions to meet when enter data

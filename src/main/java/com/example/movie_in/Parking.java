@@ -69,8 +69,6 @@ public class Parking extends Activity {
         newParkingList = Arrays.asList(letter);
         Log.v("Parking", String.valueOf(str));
 
-        //Test with
-
         //spinner for picking the amount of people in car
         Spinner spin = findViewById(R.id.spinner1);
         ArrayAdapter ad = new ArrayAdapter(this, android.R.layout.simple_spinner_item, people);

@@ -15,7 +15,7 @@ public class receipt extends Activity {
     int year, day, month;
     double amount;
     private Database db;
-    String email, people, spot, date, movieDate, movie;
+    String email, people, spot, date, movieDate, movie, ticketNum;
     TextView customerInfo, receiptInfo;
 
     @Override
@@ -34,6 +34,7 @@ public class receipt extends Activity {
         people = (String) getIntent().getSerializableExtra("people");
         email = (String) getIntent().getSerializableExtra("email");
         spot = (String) getIntent().getSerializableExtra("spot");
+        ticketNum = (String) getIntent().getSerializableExtra("ticket");
 
         //this will show what the data that the user select to the themselves
         customerInfo = (TextView) findViewById(R.id.customerInfo);
@@ -49,9 +50,6 @@ public class receipt extends Activity {
         movieDate = day + "-" + (month + 1) + "-" + year;
         movie = db.getMovie(day, month, year);
 
-        //will random product a ticket number for the customer
-        Random rand = new Random();
-        int ticketNum = rand.nextInt(1000);
 
         //showing the customer info to them
         String info = "";
@@ -81,6 +79,7 @@ public class receipt extends Activity {
         //when the clicks on the home button bring them back to the main menu
         home.setOnClickListener(v -> {
             Intent intent = new Intent(receipt.this, MainMenu.class);
+            intent.putExtra("email", email);
             startActivity(intent);
         });
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class Database extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Movie-InDatabase";
+    public static final String DATABASE_NAME = "Theater-Database";
 
     //variables for table one
     public static final String TABLE_NAME = "users_table";
@@ -29,6 +29,14 @@ public class Database extends SQLiteOpenHelper {
     public static final String COL_8 = "RATING";
     public static final String COL_9 = "Synopsis";
     public static final String COL_10 = "Parking";
+
+    //variables for table three
+    public static final String TABLE_NAME3 = "payments";
+    public static final String COL_11 = "EMAIL";
+    public static final String COL_12 = "TICKET";
+    public static final String COL_13 = "COST";
+    public static final String COL_14 = "DATE";
+    public static final String COL_15 = "SPOT";
 
     //constructs that database
     public Database(Context context) {
@@ -53,11 +61,21 @@ public class Database extends SQLiteOpenHelper {
             + COL_9 + " text, "
             + COL_10 + " text )";
 
+    //Third table
+    public static final String query3 = "CREATE TABLE " + TABLE_NAME3 + " ("
+            + ID + " integer primary key autoincrement, "
+            + COL_11 + " text,"
+            + COL_12 + " text,"
+            + COL_13 + " text,"
+            + COL_14 + " text,"
+            + COL_15 + " text)";
+
     //creates the table in the database
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(query);
         db.execSQL(query2);
+        db.execSQL(query3);
     }
 
     //checks to see if there is already a table in the database
@@ -65,6 +83,7 @@ public class Database extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME2);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME3);
         onCreate(db);
     }
 
@@ -81,6 +100,7 @@ public class Database extends SQLiteOpenHelper {
             return true;
     }
 
+    //this function will insert the data into the database
     public boolean insertMovies(String name, double length, int Day, int Month, int Year, String rating, String story, String parking) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -98,6 +118,23 @@ public class Database extends SQLiteOpenHelper {
         else
             return true;
     }
+
+    //this function will insert the data into the database
+    public boolean insertTicket(String email, String ticket, String cost, String date, String spot) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_11, email);
+        contentValues.put(COL_12, ticket);
+        contentValues.put(COL_13, cost);
+        contentValues.put(COL_14, date);
+        contentValues.put(COL_15, spot);
+        long result = db.insert(TABLE_NAME3, null, contentValues);
+        if (result == -1)
+            return false;
+        else
+            return true;
+    }
+
 
     //this function checks to see if the emails is already in use
     public Boolean checkEmail(String email) {
@@ -118,6 +155,53 @@ public class Database extends SQLiteOpenHelper {
         }else{
             return false;
         }
+    }
+
+    //this function checks to see if the emails is already in use
+    public Boolean checkTicket(String ticket) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor = MyDB.rawQuery("Select * FROM payments WHERE TICKET = ?", new String[]{ticket});
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    //This method will get the password for the account page for the user
+    public String getPassword(String email) {
+        String rv = "No Password!";
+        String queryMV = "SELECT " + COL_2 + " FROM " + TABLE_NAME +
+                " WHERE " + COL_1 + " = '" + email + "'";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
+        if (csr.moveToFirst()) {
+            rv = csr.getString(csr.getColumnIndexOrThrow(COL_2));
+        }
+        return rv;
+    }
+
+    //update the user email
+    public boolean updateEmail(String email, String newEmail) {
+        String queryMV = "UPDATE " + TABLE_NAME + " SET " + COL_1 + " = '" + newEmail +
+                "' WHERE " + COL_1 + " = '" + email + "'";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
+        if (csr.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    //update the user password
+    public boolean updatePassword(String email, String newPassword) {
+        String queryMV = "UPDATE " + TABLE_NAME + " SET " + COL_2 + " = '" + newPassword +
+                "' WHERE " + COL_1 + " = '" + email + "'";
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor csr = sqLiteDatabase.rawQuery(queryMV, null);
+        if (csr.getCount() > 0)
+            return true;
+        else
+            return false;
     }
 
     //to print all the info about the movies
@@ -197,5 +281,63 @@ public class Database extends SQLiteOpenHelper {
             return false;
     }
 
+    public ArrayList<String> getTicketHistory(String email){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from payments WHERE EMAIL = ?", new String[]{email});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndexOrThrow(COL_12)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<String> getSpotHistory(String email){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from payments WHERE EMAIL = ?", new String[]{email});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndexOrThrow(COL_15)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<String> getCostHistory(String email){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from payments WHERE EMAIL = ?", new String[]{email});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndexOrThrow(COL_13)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    public ArrayList<String> getDateHistory(String email){
+        ArrayList<String> array_list = new ArrayList<String>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res =  db.rawQuery( "select * from payments WHERE EMAIL = ?", new String[]{email});
+        res.moveToFirst();
+        while(res.isAfterLast() == false){
+            array_list.add(res.getString(res.getColumnIndexOrThrow(COL_14)));
+            res.moveToNext();
+        }
+        return array_list;
+    }
+
+    //this function will delete movies for the admin
+    public Boolean deleteMovie(String name) {
+        SQLiteDatabase db=this.getWritableDatabase();
+        int num = db.delete(TABLE_NAME2,"MOVIES = ?",new String[] {name});
+        if(num > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
